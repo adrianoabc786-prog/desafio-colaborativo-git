@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100
+
+// Define a estrutura do produto
+typedef struct {
+    int codigo;
+    char nome[50];
+    float preco;
+    int quantidade;
+} Produto;
+
+int main() {
+    Produto produtos[MAX];
+    int total = 0;
+    int opcao;
+
+    do {
+        printf("\n--- SISTEMA DE CADASTRO DE PRODUTOS ---\n");
+        printf("1. Cadastrar produto\n");
+        printf("2. Listar produtos\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 1) {
+            if (total < MAX) {
+                printf("\nCodigo do produto: ");
+                scanf("%d", &produtos[total].codigo);
+                
+                printf("Nome do produto: ");
+                scanf(" %[^\n]s", produtos[total].nome); // Leitura de string com espaços
+                
+                printf("Preco (R$): ");
+                scanf("%f", &produtos[total].preco);
+                
+                printf("Quantidade em estoque: ");
+                scanf("%d", &produtos[total].quantidade);
+                
+                total++;
+                printf("\nProduto cadastrado com sucesso!\n");
+            } else {
+                printf("\nLimite de produtos atingido!\n");
+            }
+        } else if (opcao == 2) {
+            if (total == 0) {
+                printf("\nNenhum produto cadastrado.\n");
+            } else {
+                printf("\n--- LISTA DE PRODUTOS ---\n");
+                for (int i = 0; i < total; i++) {
+                    printf("Codigo: %d\n", produtos[i].codigo);
+                    printf("Nome: %s\n", produtos[i].nome);
+                    printf("Preco: R$ %.2f\n", produtos[i].preco);
+                    printf("Quantidade: %d\n", produtos[i].quantidade);
+                    printf("--------------------------\n");
+                }
+            }
+        }
+    } while (opcao != 0);
+
+    printf("\nSistema encerrado.\n");
+    return 0;
+}
