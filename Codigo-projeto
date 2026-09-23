@@ -22,6 +22,7 @@ int main() {
         printf("\n--- SISTEMA DE CADASTRO DE PRODUTOS ---\n");
         printf("1. Cadastrar produto\n");
         printf("2. Listar produtos\n");
+        printf("3. Remover produto\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -65,6 +66,31 @@ int main() {
                     printf("Quantidade: %d\n", produtos[i].quantidade);
                     printf("--------------------------\n");
                 }
+            }
+        } else if (opcao == 3) {
+            int codigo;
+            int encontrado = 0;
+
+            printf("\nDigite o codigo do produto que deseja remover: ");
+            scanf("%d", &codigo);
+
+            for (int i = 0; i < total; i++) {
+                if (produtos[i].codigo == codigo) {
+                    encontrado = 1;
+
+                    for (int j = i; j < total - 1; j++) {
+                        produtos[j] = produtos[j + 1];
+                    }
+
+                    total--;
+
+                    printf("\nProduto removido com sucesso!\n");
+                    break;
+                }
+            }
+
+            if (!encontrado) {
+                printf("\nProduto nao encontrado.\n");
             }
         }
     } while (opcao != 0);
