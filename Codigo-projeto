@@ -9,6 +9,8 @@ typedef struct {
     char nome[50];
     float preco;
     int quantidade;
+    int lote;
+    int data; // Representa a validade
 } Produto;
 
 int main() {
@@ -31,12 +33,18 @@ int main() {
                 
                 printf("Nome do produto: ");
                 scanf(" %[^\n]s", produtos[total].nome); // Leitura de string com espaços
-                
-                printf("Preco (R$): ");
-                scanf("%f", &produtos[total].preco);
+
+                printf("Lote do produto: ");
+                scanf("%d", &produtos[total].lote);
+
+                printf("Validade do produto (ex: AAAAMMDD): ");
+                scanf("%d", &produtos[total].data);
                 
                 printf("Quantidade em estoque: ");
                 scanf("%d", &produtos[total].quantidade);
+
+                printf("Preco (R$): ");
+                scanf("%f", &produtos[total].preco);
                 
                 total++;
                 printf("\nProduto cadastrado com sucesso!\n");
@@ -51,6 +59,8 @@ int main() {
                 for (int i = 0; i < total; i++) {
                     printf("Codigo: %d\n", produtos[i].codigo);
                     printf("Nome: %s\n", produtos[i].nome);
+                    printf("Lote: %d\n", produtos[i].lote);
+                    printf("Validade: %d\n", produtos[i].data);
                     printf("Preco: R$ %.2f\n", produtos[i].preco);
                     printf("Quantidade: %d\n", produtos[i].quantidade);
                     printf("--------------------------\n");
